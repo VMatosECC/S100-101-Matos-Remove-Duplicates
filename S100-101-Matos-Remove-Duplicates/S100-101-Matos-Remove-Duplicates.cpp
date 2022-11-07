@@ -58,22 +58,28 @@ int countOccurrences(int item, vector<int> v)
 
 void removeDuplicatesVersion2(vector<int>& v)
 {
-    for (int i = 0; i < v.size(); i++)
+    int i = 0;
+    while(i < v.size())
     {
         int item = v[i];
         bool found = false;
-        for (int j = i + 1; j < v.size(); j++)
+        //Visiting neigbors from rigth to left
+        int j = v.size() - 1;
+
+        while (j > i) 
         {
-            while ((v.begin() + j) == item)
+            if (v[j] == item)
             {
                 v.erase(v.begin() + j);
                 found = true;
             }
+            j--;
         }
+
         if (found)
         {
             v.erase(v.begin() + i);
         }
-        
+        i++;
     }
 }
